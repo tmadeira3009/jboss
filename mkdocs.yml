@@ -54,6 +54,8 @@ nav:
       - '15 — Armadilhas da Prova': 15-Armadilhas-da-Prova.md
       - '16 — Simulado com Gabarito': 16-Simulado-com-Gabarito.md
       - '17 — Checklist do Dia da Prova': 17-Checklist-Dia-da-Prova.md
+  - Laboratório:
+      - 'Guia do laboratório (scripts prontos)': lab/README.md
   - Objetivos oficiais EX248:
       - '18 — Logging e Snapshots': 18-Aula-18-Logging-e-Snapshots.md
       - '19 — SSL, LDAP e Cluster Seguro': 19-Aula-19-SSL-LDAP-e-Cluster-Seguro.md

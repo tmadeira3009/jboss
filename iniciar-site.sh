@@ -7,6 +7,7 @@ cd "$(dirname "$0")"
 mkdir -p docs
 cp -f ./*.md docs/
 cp -rf imagens docs/ 2>/dev/null || true
+cp -rf lab docs/ 2>/dev/null || true
 MK="$HOME/.mkdocs-venv/bin/mkdocs"
 if [ "$1" = "build" ]; then
   rm -rf site

@@ -1,5 +1,7 @@
 # Curso RHCJA — Preparação para a Prova EX248
 
+![Capa do curso RHCJA](imagens/capa-rhcja.png)
+
 Curso **100% prático** de administração do Red Hat JBoss Enterprise Application
 Platform (EAP), organizado para a prova **EX248 / RHCJA**: 20 aulas, laboratórios
 com gabarito, cheatsheet de CLI, armadilhas, simulado e checklist para o dia da prova.
@@ -31,6 +33,22 @@ EAP 7.4** e labs oficiais Red Hat (JB248).
    ```
    (Requer Python 3.9+ com `pip install mkdocs-material`, ou o venv citado no script.)
 3. **Estudar na ordem** — siga o plano de 6 dias do índice.
+
+## Laboratório pronto (para os alunos)
+
+A pasta [`lab/`](lab/README.md) deixa o ambiente de prática **montado em 3 comandos**:
+
+```bash
+cd lab/
+bash criar-lab.sh      # cria os base directories limpos (simple/node1/node2)
+bash checar-lab.sh     # valida tudo com ✓/✗
+bash reset-lab.sh      # zera para refazer do zero (regra: 2x sem consultar)
+```
+
+![Ambiente do laboratório](imagens/diagrama-laboratorio.png)
+
+Guia completo: **[lab/README.md](lab/README.md)** — o que cada script faz, como
+subir o domínio e o roteiro de prática cronometrado.
 
 ## Roteiro de estudo (6 dias, ~4h/dia)
 
@@ -103,7 +121,8 @@ jboss/
 ├── index.md                     ← página inicial do site
 ├── mkdocs.yml                   ← config do site (MkDocs Material)
 ├── iniciar-site.sh              ← sobe o site local com busca e modo escuro
-└── imagens/                     ← telas do instalador EAP 7.4 (Aula 03)
+├── imagens/                     ← capa, diagrama do lab e telas do instalador (Aula 03)
+└── lab/                         ← laboratório pronto (criar / checar / resetar)
 ```
 
 ## Fontes
