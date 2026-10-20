@@ -78,7 +78,7 @@ Statement cache size: 20
 5. **Connection**: Transaction Isolation = `TRANSACTION_READ_COMMITTED`
 6. **Validation**: Check Valid SQL = `SELECT 1` ✔ / Background Validation ✔ /
    Validation Millis = `10000`
-7. **Statements**: Track Statements = `false`, Statement Cache Size = `20`, 
+7. **Statements**: Track Statements = `false`, Prepared Statement Cache Size = `20`, 
    ✔ *Use Shared Prepared Statements* (se pedido)
 8. **Enable** novamente
 
@@ -102,9 +102,8 @@ Statement cache size: 20
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=valid-connection-checker-class-name,value=org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker)
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=check-valid-connection-sql,value="SELECT 1")
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=background-validation,value=10000)
-/profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=background-validation-millis,value=10000)
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=track-statements,value=false)
-/profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=statement-cache-size,value=20)
+/profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=prepared-statements-cache-size,value=20)
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:enable()
 ```
 
@@ -197,7 +196,7 @@ Erro típico no teste: colocar o JNDI errado (com/sem `java:jboss/`) ou a tabela
 - [ ] TRANSACTION_READ_COMMITTED
 - [ ] valid SQL `SELECT 1` + background validation 10000 ms
 - [ ] track-statements = false
-- [ ] statement-cache-size = 20
+- [ ] prepared-statements-cache-size = 20
 - [ ] DS XA criada com as 3 properties + user/senha
 - [ ] ExampleDS (H2) removido **e** default-bindings limpo
 - [ ] dstest funcionando

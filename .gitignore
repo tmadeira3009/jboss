@@ -3,6 +3,10 @@ docs/
 site/
 *.log
 
+# EAP (cada aluno baixa com a sua conta Red Hat — nunca versionar)
+*.zip
+*.jar
+
 # python / mkdocs
 __pycache__/
 .venv/

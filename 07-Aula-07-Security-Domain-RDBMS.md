@@ -145,7 +145,7 @@ usuário: <o da questão>   senha: <a da questão>
 ```
 
 **Obrigatório: reiniciar/parar+subir o servidor depois de criar o security domain**
-(UI: `Runtime → Domain: Overview → Stop/Start`; CLI: `/host=localhost/server-config=SimpleServer:restart()`).
+(UI: `Runtime → Domain: Overview → Stop/Start`; CLI: `/host=simple/server-config=SimpleServer:restart()`).
 
 ### Erros e diagnóstico
 

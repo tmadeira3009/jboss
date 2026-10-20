@@ -45,6 +45,19 @@ bash checar-lab.sh     # valida tudo com ✓/✗
 bash reset-lab.sh      # zera para refazer do zero (regra: 2x sem consultar)
 ```
 
+**Windows?** Os mesmos 3 passos existem em PowerShell (funciona no Windows 10/11
+nativo, com o EAP instalado em `C:\`):
+
+```powershell
+cd lab\
+.\criar-lab.ps1      # cria os base directories limpos (simple/node1/node2)
+.\checar-lab.ps1     # valida tudo com [OK]/[XX]
+.\reset-lab.ps1      # zera para refazer do zero
+```
+
+Sem quatro horas de VM? A pasta [`imagem/`](imagem/README.md) tem uma **imagem
+Docker** com o domínio `simple` pronto para treinar a Parte 1 rápido.
+
 ![Ambiente do laboratório](imagens/diagrama-laboratorio.png)
 
 Guia completo: **[lab/README.md](lab/README.md)** — o que cada script faz, como
@@ -58,8 +71,9 @@ subir o domínio e o roteiro de prática cronometrado.
 | 2 | Aula 04 + Laboratório Parte 1 (até AJP) | Domínio simples configurado |
 | 3 | Aulas 05–07 + Laboratório Parte 1 completo | Parte 1 inteira rodando |
 | 4 | Aulas 08–09 + Laboratório Parte 2 (cluster) | Domínio multi-host + cluster TCP |
-| 5 | Aulas 10–11 + Laboratório Parte 2 completo + Simulado | Simulado cronometrado |
+| 5 | Aulas 10–11 + Laboratório Parte 2 completo + Simulado (16) | Simulado cronometrado |
 | 6 | Aulas 18–19 + refazer Parte 1 sem consultar | Logging, snapshots, SSL, LDAP, cluster seguro |
+| 7 | **Simulado Real (20)** — prova inteira cronometrada | Passar em 300/300 no simulado = passa na prova |
 
 **Regra de ouro:** refaça o Laboratório da Parte 1 **duas vezes** e o da Parte 2
 **duas vezes**, sem consultar material. Na prova só passa quem decorou o caminho.
@@ -98,6 +112,7 @@ subir o domínio e o roteiro de prática cronometrado.
 | [15 — Armadilhas da Prova](15-Armadilhas-da-Prova.md) | O que faz aluno reprovar |
 | [16 — Simulado com Gabarito](16-Simulado-com-Gabarito.md) | Simulado teórico + prático cronometrado |
 | [17 — Checklist do Dia da Prova](17-Checklist-Dia-da-Prova.md) | O que fazer hora a hora |
+| [20 — Simulado Real EX248](20-Simulado-Real-EX248.md) | Simulado no **formato exato da prova** (retornos reais) |
 
 ### Objetivos oficiais EX248 (lacunas fechadas)
 | Aula | Arquivo |
@@ -118,11 +133,13 @@ jboss/
 ├── 12..13  Laboratórios         ← gabaritos comando a comando
 ├── 14..17  Material de apoio    ← cheatsheet, armadilhas, simulado, checklist
 ├── 18..19  Objetivos oficiais   ← logging/snapshots e SSL/LDAP/cluster seguro
+├── 20       Simulado Real        ← prova inteira no formato EX248 (gabarito incluso)
 ├── index.md                     ← página inicial do site
 ├── mkdocs.yml                   ← config do site (MkDocs Material)
 ├── iniciar-site.sh              ← sobe o site local com busca e modo escuro
 ├── imagens/                     ← capa, diagrama do lab e telas do instalador (Aula 03)
-└── lab/                         ← laboratório pronto (criar / checar / resetar)
+├── lab/                         ← laboratório pronto (criar / checar / resetar — bash + PowerShell)
+└── imagem/                      ← imagem Docker do domínio "simple" (treino rápido)
 ```
 
 ## Fontes

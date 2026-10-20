@@ -122,11 +122,11 @@ for the host"* caem nestes dois primeiros níveis — **não** no `server-group`
 ### Via CLI
 ```bash
 # nível de HOST (afeta os server-configs que referenciarem esta JVM)
-/host=localhost/jvm=default:add(heap-size=2048m,max-heap-size=2048m,jvm-options=["-XX:-UseParallelGC"])
+/host=simple/jvm=default:add(heap-size=2048m,max-heap-size=2048m,jvm-options=["-XX:-UseParallelGC"])
 
 # nível de SERVER (precedência máxima para um servidor)
-/host=localhost/server-config=SimpleServer/jvm=default:write-attribute(name=heap-size,value=1024m)
-/host=localhost/server-config=SimpleServer/jvm=default:write-attribute(name=max-heap-size,value=2048m)
+/host=simple/server-config=SimpleServer/jvm=default:write-attribute(name=heap-size,value=1024m)
+/host=simple/server-config=SimpleServer/jvm=default:write-attribute(name=max-heap-size,value=2048m)
 ```
 
 Atributos aceitos (model 7.4): `heap-size`, `max-heap-size`, `max-permgen-size`,
@@ -142,8 +142,8 @@ JConsole/permgensize"* ainda existe no exam legado), os parâmetros funcionam.
 
 ### Validação
 ```bash
-/host=localhost/jvm=default:read-resource
-/host=localhost/server-config=SimpleServer/jvm=default:read-resource
+/host=simple/jvm=default:read-resource
+/host=simple/server-config=SimpleServer/jvm=default:read-resource
 ```
 
 ---
@@ -161,13 +161,17 @@ JConsole/permgensize"* ainda existe no exam legado), os parâmetros funcionam.
 
 **CLI:**
 ```bash
-/host=localhost/server-config=SimpleServer:add(group=SimpleGroup,auto-start=true)
-/host=localhost/server-config=SimpleServer/socket-bindings=default:add(port-offset=0)
+/host=simple/server-config=SimpleServer:add(group=SimpleGroup,auto-start=true)
+/host=simple/server-config=SimpleServer/socket-bindings=default:add(port-offset=0)
 ```
+
+> ⚠️ O caminho `/host=...` usa o **nome real do host** (o `name="..."` do host.xml).
+> Como a Tarefa 2 renomeia para `simple`, aqui é `/host=simple` — não `localhost`
+> (o material antigo do curso mostrava `localhost` e dava erro).
 
 **Valide que subiu:**
 ```bash
-/host=localhost/server-config=SimpleServer:read-resource
+/host=simple/server-config=SimpleServer:read-resource
 ps -ef | grep Server:SimpleServer
 ```
 

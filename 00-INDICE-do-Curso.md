@@ -57,6 +57,11 @@ Todo o conteúdo deste curso foi extraído dos seus documentos RHCJA:
 18. `18-Aula-18-Logging-e-Snapshots.md` — subsystem logging (handlers, níveis, categorias) + snapshots da configuração (`take-snapshot`/`list-snapshots`/restore)
 19. `19-Aula-19-SSL-LDAP-e-Cluster-Seguro.md` — HTTPS com Elytron, security domain LDAP, AUTH + SYM_ENCRYPT no cluster
 
+### Simulado da prova
+20. `20-Simulado-Real-EX248.md` — simulado **no formato exato da prova** (Parte 1 e Parte 2,
+    enunciados + gabarito, cronômetros, pontuação) montado a partir dos relatos de quem
+    fez o EX248 — treine com ele no último dia.
+
 ---
 
 ## Matriz de cobertura — objetivos oficiais da EX248 → aula
@@ -90,8 +95,9 @@ Todo o conteúdo deste curso foi extraído dos seus documentos RHCJA:
 | 2 | Aula 04 + Laboratório Parte 1 (até AJP) | Domínio simples configurado |
 | 3 | Aulas 05, 06, 07 + Laboratório Parte 1 completo | Parte 1 inteira rodando |
 | 4 | Aulas 08, 09 + Laboratório Parte 2 (cluster) | Domínio multi-host e cluster TCP |
-| 5 | Aulas 10, 11 + Laboratório Parte 2 completo + Simulado | Simulado completo cronometrado |
+| 5 | Aulas 10, 11 + Laboratório Parte 2 completo + Simulado (16) | Simulado completo cronometrado |
 | 6 | Aulas 18, 19 + repetição da Parte 1 sem consultar | Logging, snapshots, SSL, LDAP, cluster seguro |
+| 7 | **Simulado Real (20)** — prova inteira cronometrada | Passar em 300/300 no simulado = passa na prova |
 
 **Regra de ouro:** refaça a Parte 1 do zero **duas vezes** e a Parte 2 **duas vezes**.
 Na prova o tempo é curto; só passa quem já decorou o caminho.

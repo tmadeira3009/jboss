@@ -29,7 +29,7 @@ whoami
 history
 /profile=default:read-resource(recursive=true)
 /profile=default/subsystem=undertow:read-children-names(child-type=server)
-/host=localhost:read-children-names(child-type=server-config)
+/host=<nome>:read-children-names(child-type=server-config)   # no lab: /host=simple
 /domain:read-children-names(child-type=server-group)
 :completion                       # ajuda de autocompletar de caminho
 ```
@@ -42,20 +42,20 @@ history
 /domain/server-group=SimpleGroup/jvm=simple:add(heap-size=1326m,max-heap-size=1326m,stack-size=128k)
 /domain/server-group=SimpleGroup/jvm=simple:write-attribute(name=heap-size,value=1024m)
 
-/host=localhost/server-config=SimpleServer:add(group=SimpleGroup,auto-start=true)
-/host=localhost/server-config=SimpleServer/socket-bindings=default:add(port-offset=0)
-/host=localhost/server-config=SimpleServer:write-attribute(name=auto-start,value=false)
-/host=localhost/server-config=SimpleServer:start()
-/host=localhost/server-config=SimpleServer:stop()
-/host=localhost/server-config=SimpleServer:restart()
-/host=localhost/server-config=SimpleServer:read-resource
+/host=simple/server-config=SimpleServer:add(group=SimpleGroup,auto-start=true)
+/host=simple/server-config=SimpleServer/socket-bindings=default:add(port-offset=0)
+/host=simple/server-config=SimpleServer:write-attribute(name=auto-start,value=false)
+/host=simple/server-config=SimpleServer:start()
+/host=simple/server-config=SimpleServer:stop()
+/host=simple/server-config=SimpleServer:restart()
+/host=simple/server-config=SimpleServer:read-resource
 
 # JVM em nível de HOST (define a JVM default de todos os server-configs do host)
-/host=localhost/jvm=default:add(heap-size=2048m,max-heap-size=2048m,jvm-options=["-XX:-UseParallelGC"])
+/host=simple/jvm=default:add(heap-size=2048m,max-heap-size=2048m,jvm-options=["-XX:-UseParallelGC"])
 
 # JVM em nível de SERVER (específico de um server-config; tem precedência)
-/host=localhost/server-config=SimpleServer/jvm=default:write-attribute(name=heap-size,value=1024m)
-/host=localhost/server-config=SimpleServer/jvm=default:write-attribute(name=max-heap-size,value=2048m)
+/host=simple/server-config=SimpleServer/jvm=default:write-attribute(name=heap-size,value=1024m)
+/host=simple/server-config=SimpleServer/jvm=default:write-attribute(name=max-heap-size,value=2048m)
 ```
 
 ## Undertow: conexões HTTP e AJP
@@ -87,9 +87,9 @@ history
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=max-pool-size,value=50)
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=transaction-isolation,value=TRANSACTION_READ_COMMITTED)
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=check-valid-connection-sql,value="SELECT 1")
-/profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=background-validation-millis,value=10000)
+/profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=background-validation,value=10000)
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=track-statements,value=false)
-/profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=statement-cache-size,value=20)
+/profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=prepared-statements-cache-size,value=20)
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:enable()
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:disable()
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:test-connection()

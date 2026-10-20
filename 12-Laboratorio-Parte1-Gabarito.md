@@ -62,7 +62,7 @@ Validação:
 
 Runtime → SimpleGroup → Add: `Name=SimpleServer`, `Port Offset=0`, `Auto Start=✔`
 ```bash
-/host=localhost/server-config=SimpleServer:add(group=SimpleGroup,auto-start=true)
+/host=simple/server-config=SimpleServer:add(group=SimpleGroup,auto-start=true)
 ```
 Validação: `ps -ef | grep SimpleServer`
 
@@ -111,7 +111,7 @@ Depois: **Disable** → configure → **Enable**:
 Pool      → Min 5, Max 50            (ou o número do enunciado)
 Connection→ Transaction Isolation: TRANSACTION_READ_COMMITTED
 Validation→ Check Valid SQL: SELECT 1 | Background Validation: ✔ | Millis: 10000
-Statements→ Track Statements: false | Statement Cache Size: 20
+Statements→ Track Statements: false | Prepared Statement Cache Size: 20
 ```
 
 CLI-resumo:
@@ -120,9 +120,9 @@ CLI-resumo:
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=max-pool-size,value=50)
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=transaction-isolation,value=TRANSACTION_READ_COMMITTED)
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=check-valid-connection-sql,value="SELECT 1")
-/profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=background-validation-millis,value=10000)
+/profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=background-validation,value=10000)
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=track-statements,value=false)
-/profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=statement-cache-size,value=20)
+/profile=default/subsystem=datasources/data-source=DS_NON_XA:write-attribute(name=prepared-statements-cache-size,value=20)
 /profile=default/subsystem=datasources/data-source=DS_NON_XA:enable()
 ```
 

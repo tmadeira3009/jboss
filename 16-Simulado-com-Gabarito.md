@@ -3,6 +3,10 @@
 Duas partes: **I) Teórico** (fundamentos — responda no papel) e **II) Prático**
 (enunciados no formato da prova — execute cronometrado).
 
+> 💡 Quer um simulado **colado no formato do exame real** (Parte 1 e Parte 2
+> inteiras, com enunciados, cronômetro e pontuação como na prova)? Veja o
+> [Simulado Real EX248](20-Simulado-Real-EX248.md).
+
 ---
 
 ## PARTE I — Simulado teórico (20 questões)
