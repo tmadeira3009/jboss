@@ -62,8 +62,8 @@ Docker** com o domínio `simple` pronto para treinar a Parte 1 rápido.
 
 ![Ambiente do laboratório](imagens/diagrama-laboratorio.png)
 
-Guia completo: **[lab/README.md](lab/README.md)** — o que cada script faz, como
-subir o domínio e o roteiro de prática cronometrado.
+Guia completo (passo a passo Windows e WSL, parâmetros de todos os scripts,
+solução de problemas e FAQ): **[lab/README.md](lab/README.md)**.
 
 ## Roteiro de estudo (6 dias, ~4h/dia)
 

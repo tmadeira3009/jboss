@@ -105,8 +105,13 @@ Na prova o tempo é curto; só passa quem já decorou o caminho.
 ## Ambiente necessário para praticar
 
 - 1 máquina RHEL/Rocky/CentOS 8+ com pelo menos 4 GB de RAM livres
+  (**Windows 10/11 também funciona** — o [lab](lab/README.md) tem scripts PowerShell)
 - Java 8 ou 11 instalado (`java -version`)
 - Instaladores: `jboss-eap-7.x-installer.jar` e `jboss-eap-7.x.zip`
 - PostgreSQL (Parte 1 clássica) **ou** MySQL (variação nova da prova)
 - Apache httpd (Parte 2, balanceamento)
 - Arquivos de teste: `example.war`, `dstest.war`, `cluster_test.war`, `JMSTest.war`
+
+> **Monte o ambiente em 3 comandos** com o [guia do laboratório](lab/README.md)
+> (passo a passo para Windows, WSL/Linux e [Docker](imagem/README.md), com
+> solução de problemas).

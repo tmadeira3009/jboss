@@ -12,7 +12,7 @@ Curso **100% prático** de administração do Red Hat JBoss EAP (prova EX248 / R
 | 1 | **[Índice do Curso](00-INDICE-do-Curso.md)** | Mapa completo + matriz de cobertura dos objetivos oficiais + plano de estudo |
 | 2 | **[A Prova RHCJA (EX248)](01-Aula-01-A-Prova-RHCJA.md)** | Formato, pontuação, estratégia e o que cai |
 | 3 | **[Instalação do EAP](03-Aula-03-Instalacao-do-EAP.md)** | Tarefa 1 da prova, instalação silenciosa e validação |
-| 4 | **[Laboratório pronto](lab/README.md)** | Scripts `criar / checar / reset` — ambiente montado em 3 comandos |
+| 4 | **[Laboratório pronto](lab/README.md)** | Guia completo: scripts `criar / checar / reset` (Windows e WSL) — ambiente em 3 comandos |
 | 5 | **[Simulado Real EX248](20-Simulado-Real-EX248.md)** | A prova inteira (Parte 1 e 2) no formato real, com gabarito |
 
 ## Roteiro de estudo

@@ -9,7 +9,8 @@ o estado da prova depois da Tarefa 2 da Parte 1.
 > RHEL 10 não é suportado. E o próprio RHEL não pode ser distribuído no git
 > (licença): o UBI é a imagem pública oficial Red Hat que resolve os dois casos.
 > A prática real na prova é em RHEL nativo — aqui você treina a lógica e os
-> comandos; o lab nativo (`lab/`, funciona em Windows também) é o mais fiel.
+> comandos; o lab nativo ([guia completo](../lab/README.md), com versão `.ps1`
+> para Windows) é o mais fiel.
 
 ## Pré-requisitos
 
@@ -74,7 +75,7 @@ docker rm -f rhcja-lab
 docker run -d --name rhcja-lab -p 8080:8080 -p 9990:9990 -p 9999:9999 \
   --mount "type=bind,source=$(wslpath -w ../lab),target=/lab" rhcja-lab   # WSL
 # no PowerShell troque o --mount por:
-#   --mount "type=bind,source=$((Resolve-Path ..\lab),target=/lab"
+#   --mount "type=bind,source=$((Resolve-Path ..\lab)),target=/lab"
 
 docker exec -it rhcja-lab bash
 export JBOSS_HOME=/opt/eap
