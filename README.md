@@ -45,14 +45,16 @@ bash checar-lab.sh     # valida tudo com ✓/✗
 bash reset-lab.sh      # zera para refazer do zero (regra: 2x sem consultar)
 ```
 
-**Windows?** Os mesmos 3 passos existem em PowerShell (funciona no Windows 10/11
-nativo, com o EAP instalado em `C:\`):
+**Windows?** Os mesmos 3 passos existem em PowerShell (Windows 10/11 nativo, com o
+EAP instalado). Rode **sempre** com `-ExecutionPolicy Bypass` (por padrão o
+Windows bloqueia `.ps1`):
 
 ```powershell
-cd lab\
-.\criar-lab.ps1      # cria os base directories limpos (simple/node1/node2)
-.\checar-lab.ps1     # valida tudo com [OK]/[XX]
-.\reset-lab.ps1      # zera para refazer do zero
+cd lab
+powershell -ExecutionPolicy Bypass -File .\criar-lab.ps1    # cria os base dirs limpos
+powershell -ExecutionPolicy Bypass -File .\checar-lab.ps1   # valida tudo com [OK]/[XX]
+powershell -ExecutionPolicy Bypass -File .\reset-lab.ps1    # zera para refazer do zero
+powershell -ExecutionPolicy Bypass -File .\criar-lab.ps1 -Tudo   # as 2 partes da prova
 ```
 
 Sem quatro horas de VM? A pasta [`imagem/`](imagem/README.md) tem uma **imagem

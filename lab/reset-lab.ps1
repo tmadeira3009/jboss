@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  Laboratório RHCJA no Windows — apaga as bases para refazer do zero.
+  Laboratorio RHCJA no Windows - apaga as bases para refazer do zero.
 .EXAMPLE
   powershell -ExecutionPolicy Bypass -File reset-lab.ps1      # pede confirmacao 'sim'
   powershell -ExecutionPolicy Bypass -File reset-lab.ps1 -y   # sem perguntar
@@ -24,9 +24,16 @@ if (-not $y) {
 foreach ($nome in @('simple', 'node1', 'node2')) {
     $dest = Join-Path $LabDir $nome
     if (Test-Path $dest) {
-        Remove-Item $dest -Recurse -Force
-        Write-Host "  [OK] removido $dest" -ForegroundColor Green
+        try {
+            Remove-Item $dest -Recurse -Force -ErrorAction Stop
+            Write-Host "  [OK] removido $dest" -ForegroundColor Green
+        } catch {
+            Write-Host "  [ERRO] nao consegui apagar '$dest'" -ForegroundColor Red
+            Write-Host "         Motivo: $($_.Exception.Message)" -ForegroundColor Red
+            Write-Host '         Pare o EAP (feche o console do domain.bat) e rode de novo.' -ForegroundColor Yellow
+            exit 1
+        }
     }
 }
 
-Write-Host 'Laboratorio zerado. Recrie com: criar-lab.ps1 [simple|tudo]'
+Write-Host 'Laboratorio zerado. Recrie com: criar-lab.ps1 [-Tudo]'

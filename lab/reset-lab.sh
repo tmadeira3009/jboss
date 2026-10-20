@@ -15,6 +15,13 @@ if [ "${1:-}" != "-y" ]; then
 fi
 
 for n in simple node1 node2; do
-  if [ -d "$LAB_DIR/$n" ]; then rm -rf "$LAB_DIR/$n"; echo "  ✓ removido $LAB_DIR/$n"; fi
+  if [ -d "$LAB_DIR/$n" ]; then
+    rm -rf "$LAB_DIR/$n" 2>/dev/null || {
+      echo "ERRO: não consegui apagar '$LAB_DIR/$n' (permissão negada?)."
+      echo "      Se o lab foi criado com sudo, apague com:"
+      echo "        sudo LAB_DIR=$LAB_DIR bash reset-lab.sh -y"
+      exit 1; }
+    echo "  ✓ removido $LAB_DIR/$n"
+  fi
 done
 echo "Laboratório zerado. Recrie com: bash criar-lab.sh [simple|tudo]"

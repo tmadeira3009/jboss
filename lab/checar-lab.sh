@@ -21,7 +21,9 @@ achou=0
 for n in simple node1 node2; do
   if [ -d "$LAB_DIR/$n" ]; then
     v "$LAB_DIR/$n existe"
-    if ! grep -q "<servers>" "$LAB_DIR/$n/configuration/host.xml" 2>/dev/null; then
+    if [ ! -f "$LAB_DIR/$n/configuration/host.xml" ] || [ ! -f "$LAB_DIR/$n/configuration/domain.xml" ]; then
+      x "$n: base incompleta (falta host.xml/domain.xml) — rode: bash criar-lab.sh"
+    elif ! grep -q "<servers>" "$LAB_DIR/$n/configuration/host.xml" 2>/dev/null; then
       v "$n: domínio limpo (sem servers padrão)"
     else
       x "$n: ainda tem <servers> no host.xml"

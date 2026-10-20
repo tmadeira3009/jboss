@@ -46,43 +46,61 @@ JBOSS_HOME=/opt/jboss-eap-7.4 bash criar-lab.sh
 
 No Windows 10/11 os mesmos 3 scripts existem em `.ps1` — exigem o EAP instalado
 (ex.: `C:\jboss-eap-7.4`) e o `JBOSS_HOME` definido. O lab é criado em
-`%USERPROFILE%\lab-eap` (sem `sudo`, sem WSL):
+`%USERPROFILE%\lab-eap` (sem `sudo`, sem WSL).
+
+**1) Diga ao Windows onde está o EAP** (uma vez só; depois abra um **novo** terminal):
 
 ```powershell
-cd lab\
-
-.\criar-lab.ps1                 # 1) cria simple (Parte 1) — domínio limpo
-.\checar-lab.ps1                # 2) mostra [OK] e [XX] (pré-requisitos, bases, portas)
-.\reset-lab.ps1                 # 3) apaga tudo para refazer (confirma, ou use -y)
-
-.\criar-lab.ps1 -Tudo           # cria simple + node1 + node2 (as 2 partes)
-.\criar-lab.ps1 -Validacao Tudo # só valida (equivalente ao checar)
+setx JBOSS_HOME C:\jboss-eap-7.4
 ```
 
-Caminhos que você pode personalizar:
+**2) Rode os scripts SEMPRE com `-ExecutionPolicy Bypass`** — no Windows os scripts
+`.ps1` vêm bloqueados por padrão; sem o `Bypass` aparece o erro
+*"o arquivo não está assinado digitalmente…"*:
 
 ```powershell
-.\criar-lab.ps1 -LabDir D:\lab-eap            # onde criar os base dirs
-.\criar-lab.ps1 -JbossHome C:\jboss-eap-7.4    # EAP em outro local (ou $env:JBOSS_HOME)
+cd lab
+
+powershell -ExecutionPolicy Bypass -File .\criar-lab.ps1    # 1) cria simple (Parte 1)
+powershell -ExecutionPolicy Bypass -File .\checar-lab.ps1   # 2) mostra [OK] e [XX]
+powershell -ExecutionPolicy Bypass -File .\reset-lab.ps1    # 3) apaga para refazer (-y = sem perguntar)
+
+powershell -ExecutionPolicy Bypass -File .\criar-lab.ps1 -Tudo   # cria simple + node1 + node2
 ```
 
-Subir o domínio no Windows é o mesmo comando da Aula 03/04, com caminho Windows:
+> 📌 Se você já tem um terminal onde `.\criar-lab.ps1` funciona direto, pode
+> usá-lo; o `powershell -ExecutionPolicy Bypass -File` funciona **em qualquer
+> máquina**, por isso os exemplos usam ele.
+
+**3) Subir o domínio** (mesma ideia da Aula 04, com caminho Windows). Use **sempre
+com aspas** — o instalador gráfico instala em `C:\Program Files\...` (tem espaço!):
 
 ```powershell
 & "$env:JBOSS_HOME\bin\domain.bat" -Djboss.domain.base.dir="$env:USERPROFILE\lab-eap\simple"
 ```
 
-> ⚠️ Os `.ps1` não rodam em Linux/WSL (usa `netstat`, `Stop-Process` etc. do
-> Windows). Em WSL use os `.sh`. Prefere treinar sem VM? Veja a
-> [imagem Docker](../imagem/README.md).
+O `criar-lab.ps1` imprime esse comando pronto ao terminar.
+
+### Se algo falhar no Windows
+
+| Erro | Causa | Solução |
+|---|---|---|
+| *"não está assinado digitalmente"* / *UnauthorizedAccess* | Rodo `.ps1` sem Bypass | Use `powershell -ExecutionPolicy Bypass -File ...` |
+| *"JBOSS_HOME nao definido"* | `setx` feito no mesmo terminal, ou nunca feito | Rode o `setx`, feche e abra um **novo** terminal |
+| *"EAP nao encontrado"* | Caminho errado | Confira com `echo $env:JBOSS_HOME` e `dir "$env:JBOSS_HOME\domain"` |
+| `checar-lab.ps1` mostra `[XX]` na base | Cópia incompleta | Rode `criar-lab.ps1` de novo (apaga e recria) |
+| `domain.bat` fecha dizendo porta em uso | Outro EAP/JVM no ar | `netstat -ano \| findstr :8080` e feche o processo |
+
+> ⚠️ Os `.ps1` são para **Windows**. Em WSL/Linux use os `.sh`. Prefere treinar
+> sem VM? Veja a [imagem Docker](../imagem/README.md).
 
 ## O que cada script faz
 
-| Script | O que faz | O que ele **não** faz |
+| Script (`.sh` / `.ps1`) | O que faz | O que ele **não** faz |
 |---|---|---|
-| `criar-lab.sh` | Copia `$JBOSS_HOME/domain` para `$LAB_DIR/<nome>`, **apaga** os `servers`/`server-groups` padrão e renomeia o host (igual à Tarefa 2 da prova) | Não cria grupos, servidores, datasources — isso é **você fazer** (é o que cai!) |
-| `checar-lab.sh` | Confere Java, EAP, bases, processo e portas 9990/8080 (só leitura) | Não altera nada |
-| `reset-lab.sh` | Apaga os 3 base dirs (confirme com `sim` ou use `-y`) | Não apaga o EAP nem o `/opt/lab` inteiro |
+| `criar-lab` | Copia `$JBOSS_HOME/domain` para `$LAB_DIR/<nome>`, **apaga** os `servers`/`server-groups` padrão e renomeia o host (igual à Tarefa 2 da prova) | Não cria grupos, servidores, datasources — isso é **você fazer** (é o que cai!) |
+| `checar-lab` | Confere Java, EAP, bases, processo e portas 9990/8080 (só leitura) | Não altera nada |
+| `reset-lab` | Apaga os 3 base dirs (confirme com `sim` ou use `-y`) | Não apaga o EAP nem a pasta do lab inteira |
 
 ## Subir e praticar
 

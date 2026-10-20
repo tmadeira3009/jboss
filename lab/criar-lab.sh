@@ -25,14 +25,29 @@ esac
   echo "      Instale o EAP (Aula 03) e rode com JBOSS_HOME=/caminho/do/eap"
   exit 1; }
 
+command -v python3 >/dev/null 2>&1 || {
+  echo "ERRO: python3 não encontrado (o script usa python3 para editar o XML)."
+  echo "      RHEL/CentOS 8+: já vem instalado. CentOS 7: sudo yum install -y python3"
+  echo "      Ubuntu/WSL:     sudo apt install -y python3"
+  exit 1; }
+
 mkdir -p "$LAB_DIR" 2>/dev/null || {
   echo "ERRO: sem permissão para criar em '$LAB_DIR'."
   echo "      Rode com sudo, ou defina LAB_DIR=\$HOME/lab-eap"
   exit 1; }
 
+apagar() {
+  rm -rf "$1" 2>/dev/null || {
+    echo "ERRO: não consegui apagar '$1' (permissão negada?)."
+    echo "      Se você rodou 'sudo bash criar-lab.sh' antes, apague com:"
+    echo "        sudo LAB_DIR=$LAB_DIR bash reset-lab.sh -y"
+    echo "      e volte a rodar este script SEM sudo (ou use sudo de novo, sempre igual)."
+    exit 1; }
+}
+
 criar() {
   local nome="$1" destino="$LAB_DIR/$1"
-  rm -rf "$destino"
+  apagar "$destino"
   cp -r "$JBOSS_HOME/domain" "$destino"
   python3 - "$destino" "$nome" <<'PY'
 import re, sys, pathlib

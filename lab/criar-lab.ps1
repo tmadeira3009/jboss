@@ -1,17 +1,19 @@
 <#
 .SYNOPSIS
-  Laboratório RHCJA no Windows — cria os base directories limpos (simple/node1/node2).
-  Mesma lógica do criar-lab.sh: copia $JBOSS_HOME\domain, renomeia o host e apaga
+  Laboratorio RHCJA no Windows - cria os base directories limpos (simple/node1/node2).
+  Mesma logica do criar-lab.sh: copia $JBOSS_HOME\domain, renomeia o host e apaga
   os blocos <servers> / <server-groups> (estado inicial da prova).
 
 .EXAMPLE
   powershell -ExecutionPolicy Bypass -File criar-lab.ps1
-  powershell -ExecutionPolicy Bypass -File criar-lab.ps1 -Modo tudo
+  powershell -ExecutionPolicy Bypass -File criar-lab.ps1 -Tudo
   powershell -ExecutionPolicy Bypass -File criar-lab.ps1 -JbossHome C:\eap -LabDir D:\lab
 #>
 param(
     [ValidateSet('simple', 'tudo')]
     [string]$Modo = 'simple',
+
+    [switch]$Tudo,
 
     [string]$JbossHome = $env:JBOSS_HOME,
 
@@ -20,6 +22,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+if ($Tudo) { $Modo = 'tudo' }
 if (-not $LabDir) { $LabDir = Join-Path $env:USERPROFILE 'lab-eap' }
 if (-not $JbossHome) {
     Write-Host 'ERRO: JBOSS_HOME nao definido.' -ForegroundColor Red
@@ -40,7 +43,16 @@ Write-Host "Lab: $LabDir"
 
 foreach ($nome in $alvos) {
     $dest = Join-Path $LabDir $nome
-    if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }
+    if (Test-Path $dest) {
+        try {
+            Remove-Item $dest -Recurse -Force -ErrorAction Stop
+        } catch {
+            Write-Host "  [ERRO] nao consegui apagar '$dest'" -ForegroundColor Red
+            Write-Host "         Motivo: $($_.Exception.Message)" -ForegroundColor Red
+            Write-Host '         Se o servidor esta rodando, pare o EAP (domain.bat --stop ou feche o console).' -ForegroundColor Yellow
+            exit 1
+        }
+    }
     New-Item -ItemType Directory -Path $dest -Force | Out-Null
     Copy-Item -Path (Join-Path $JbossHome 'domain\*') -Destination $dest -Recurse -Force
 
@@ -68,7 +80,7 @@ foreach ($nome in $alvos) {
 
     if ($okNome -and $okServers -and $okGroups) {
         Write-Host "  [OK] $dest  (host name='$nome', sem servers/server-groups)" -ForegroundColor Green
-        Write-Host "       Sobe com: $JbossHome\bin\domain.bat -Djboss.domain.base.dir=$dest"
+        Write-Host "       Sobe com: & `"$JbossHome\bin\domain.bat`" -Djboss.domain.base.dir=`"$dest`""
     } else {
         Write-Host "  [ERRO] $dest (nome=$okNome servers=$okServers groups=$okGroups)" -ForegroundColor Red
         exit 1
