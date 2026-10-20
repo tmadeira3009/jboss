@@ -1,0 +1,12 @@
+# gerados pelo site (não versionar)
+docs/
+site/
+*.log
+
+# python / mkdocs
+__pycache__/
+.venv/
+
+# editor/OS
+.DS_Store
+Thumbs.db

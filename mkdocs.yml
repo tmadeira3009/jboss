@@ -1,0 +1,77 @@
+site_name: Curso RHCJA — Prova EX248
+site_description: Curso prático de preparação para a EX248 (JBoss EAP Administration)
+docs_dir: docs
+
+theme:
+  name: material
+  language: pt
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.tabs.link
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: red
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Modo claro
+
+nav:
+  - Início: index.md
+  - '00 — Índice do Curso': 00-INDICE-do-Curso.md
+  - Fundamentos:
+      - '01 — A Prova RHCJA (EX248)': 01-Aula-01-A-Prova-RHCJA.md
+      - '02 — Arquitetura do JBoss EAP': 02-Aula-02-Arquitetura-do-JBoss-EAP.md
+      - '03 — Instalação do EAP': 03-Aula-03-Instalacao-do-EAP.md
+  - Parte 1 — Simple Domain:
+      - '04 — Simple Domain': 04-Aula-04-Simple-Domain.md
+      - '05 — Datasources': 05-Aula-05-Datasources.md
+      - '06 — Root Context': 06-Aula-06-Root-Context.md
+      - '07 — Security Domain RDBMS': 07-Aula-07-Security-Domain-RDBMS.md
+  - Parte 2 — Domain Controller:
+      - '08 — Domain Controller Multihost': 08-Aula-08-Domain-Controller-Multihost.md
+      - '09 — Cluster JGroups TCP': 09-Aula-09-Cluster-JGroups-TCP.md
+      - '10 — Balanceamento mod_cluster': 10-Aula-10-Balanceamento-mod_cluster.md
+      - '11 — JMS / ActiveMQ': 11-Aula-11-JMS-ActiveMQ.md
+  - Prática e prova:
+      - '12 — Laboratório Parte 1 (gabarito)': 12-Laboratorio-Parte1-Gabarito.md
+      - '13 — Laboratório Parte 2 (gabarito)': 13-Laboratorio-Parte2-Gabarito.md
+      - '14 — Cheatsheet CLI': 14-Cheatsheet-CLI.md
+      - '15 — Armadilhas da Prova': 15-Armadilhas-da-Prova.md
+      - '16 — Simulado com Gabarito': 16-Simulado-com-Gabarito.md
+      - '17 — Checklist do Dia da Prova': 17-Checklist-Dia-da-Prova.md
+  - Objetivos oficiais EX248:
+      - '18 — Logging e Snapshots': 18-Aula-18-Logging-e-Snapshots.md
+      - '19 — SSL, LDAP e Cluster Seguro': 19-Aula-19-SSL-LDAP-e-Cluster-Seguro.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - fenced_code
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+plugins:
+  - search:
+      lang: pt
