@@ -9,16 +9,16 @@ datasources, segurança, cluster, JMS e balanceamento.
 
 **Neste guia:**
 
-1. [O que é o laboratório](#1-o-que-é-o-laboratório)
+1. [O que é o laboratório](#1-o-que-e-o-laboratorio)
 2. [Escolha seu ambiente](#2-escolha-seu-ambiente)
-3. [Windows (PowerShell) — passo a passo](#3-windows-powershell--passo-a-passo)
-4. [WSL / Linux — passo a passo](#4-wsl--linux--passo-a-passo)
-5. [Docker — treino rápido](#5-docker--treino-rápido)
+3. [Windows (PowerShell) — passo a passo](#3-windows-powershell-passo-a-passo)
+4. [WSL / Linux — passo a passo](#4-wsl-linux-passo-a-passo)
+5. [Docker — treino rápido](#5-docker-treino-rapido)
 6. [O que os scripts fazem por dentro](#6-o-que-os-scripts-fazem-por-dentro)
-7. [O que a prova cobra × o que o script já faz](#7-o-que-a-prova-cobra--o-que-o-script-já-faz)
-8. [Ciclo de prática (regra das 2 vezes)](#8-ciclo-de-prática-regra-das-2-vezes)
-9. [Treinar a Tarefa 2 à mão](#9-treinar-a-tarefa-2-à-mão)
-10. [Solução de problemas](#10-solução-de-problemas)
+7. [O que a prova cobra × o que o script já faz](#7-o-que-a-prova-cobra-o-que-o-script-ja-faz)
+8. [Ciclo de prática (regra das 2 vezes)](#8-ciclo-de-pratica-regra-das-2-vezes)
+9. [Treinar a Tarefa 2 à mão](#9-treinar-a-tarefa-2-a-mao)
+10. [Solução de problemas](#10-solucao-de-problemas)
 11. [Perguntas frequentes](#11-perguntas-frequentes)
 
 ---
@@ -191,7 +191,7 @@ Saída esperada (tudo `[OK]`; exit code 0):
 Resultado: N ok, 0 problema(s).
 ```
 
-Se aparecer `[XX]` em alguma linha, veja a [seção 10](#10-solução-de-problemas).
+Se aparecer `[XX]` em alguma linha, veja a [seção 10](#10-solucao-de-problemas).
 
 ### 3.4 Subir o domínio (Parte 1)
 
@@ -223,7 +223,7 @@ powershell -ExecutionPolicy Bypass -File .\reset-lab.ps1 -y
 powershell -ExecutionPolicy Bypass -File .\criar-lab.ps1
 ```
 
-Repita o ciclo [as 2 vezes exigidas](#8-ciclo-de-prática-regra-das-2-vezes).
+Repita o ciclo [as 2 vezes exigidas](#8-ciclo-de-pratica-regra-das-2-vezes).
 
 ---
 
@@ -311,7 +311,7 @@ bash checar-lab.sh
 ```
 
 Exit code `0` = tudo certo. Qualquer `✗` aparece explicado na
-[seção 10](#10-solução-de-problemas).
+[seção 10](#10-solucao-de-problemas).
 
 ### 4.4 Subir o domínio (Parte 1)
 
@@ -360,7 +360,7 @@ Reset total = `docker rm -f rhcja-lab` e rodar de novo. Guia completo, inclusão
 
 ## 6. O que os scripts fazem por dentro
 
-Transparência total — depois que decorar, faça [à mão](#9-treinar-a-tarefa-2-à-mão):
+Transparência total — depois que decorar, faça [à mão](#9-treinar-a-tarefa-2-a-mao):
 
 1. **Cópia** — `$JBOSS_HOME/domain` → `$LAB_DIR/<nome>` (o EAP original nunca é
    tocado; ele continua sendo o "template" para recriar tudo);
@@ -386,7 +386,7 @@ servidor que você criar (também offset 0) — erro clássico de prova.
 | Etapa da prova | O script faz? | Você faz |
 |---|---|---|
 | Tarefa 1 — instalar o EAP | ❌ | Uma vez na vida (Aula 03); o lab reusa a instalação |
-| **Tarefa 2 — base dir limpo** | ✅ | — (treine à mão [depois](#9-treinar-a-tarefa-2-à-mão)) |
+| **Tarefa 2 — base dir limpo** | ✅ | — (treine à mão [depois](#9-treinar-a-tarefa-2-a-mao)) |
 | Tarefa 3 — JVM do grupo | ❌ | `/server-group=G/jvm=...` (Aula 04) |
 | Tarefa 4 — server-config + offset | ❌ | `/host=simple/server-config=...` (Aula 04) |
 | Tarefa 5 — Undertow (max-conn/AJP) | ❌ | Aula 04 |
